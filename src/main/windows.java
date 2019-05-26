@@ -7,6 +7,7 @@ package main;
 
 import Graphics.Assets;
 import States.GameState;
+import input.KeyBoard;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,8 +29,9 @@ public class windows extends JFrame implements Runnable {
     private double targetTime = 1000000000 / fps;
     private double delta = 0;
     private int averageFps = fps;
-    
+
     private GameState gameState;
+    private KeyBoard keyBoard;
 
     public windows() {
         setTitle("JavaApplication32");
@@ -39,12 +41,13 @@ public class windows extends JFrame implements Runnable {
         setLocationRelativeTo(null);
         setVisible(true);
         canvas = new Canvas();
+        keyBoard = new KeyBoard();
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         canvas.setFocusable(true);
         add(canvas);
-
+        canvas.addKeyListener(keyBoard);
     }
 
     public static void main(String[] args) {
@@ -52,6 +55,7 @@ public class windows extends JFrame implements Runnable {
     }
 
     private void update() {
+        keyBoard.update();
         gameState.update();
 
     }
@@ -64,12 +68,11 @@ public class windows extends JFrame implements Runnable {
         }
         g = bs.getDrawGraphics();
         //----------------------------------
-        
+
         g.setColor(Color.BLACK);
-        g.fillRect(0,0,WIDTH,HEIGHT);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
         gameState.draw(g);
-        
-        
+
         //----------------------------------
         g.dispose();
         bs.show();

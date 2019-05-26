@@ -15,18 +15,20 @@ import java.awt.Graphics;
  * @author Chory77
  */
 public class GameState {
+
     private Player player;
+
     public GameState() {
         player = new Player(new Vector2D(350, 400), Assets.player);
     }
-    
-    public void update(){
-    
+
+    public void update() {
+        player.update();
     }
-    
-    public void draw(Graphics g){
+
+    public void draw(Graphics g) {
         player.draw(g);
-    
+
     }
-    
+
 }
