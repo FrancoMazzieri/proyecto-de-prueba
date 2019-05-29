@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
  * @author Chory77
  */
 public abstract class GameObject {
+
     protected BufferedImage textura;
     protected Vector2D posicion;
 
@@ -21,8 +22,9 @@ public abstract class GameObject {
         this.posicion = posicion;
         this.textura = textura;
     }
-    
+
     public abstract void update();
+
     public abstract void draw(Graphics g);
 
     public Vector2D getPosicion() {
@@ -32,6 +34,5 @@ public abstract class GameObject {
     public void setPosicion(Vector2D posicion) {
         this.posicion = posicion;
     }
-    
-    
+
 }
